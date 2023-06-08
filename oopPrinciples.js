@@ -11,7 +11,7 @@
 
 //For example, say we have some shapes and we wanted to sum all the areas of the shapes. Well this is pretty simple, right?
 
-const circle = (radius) => {
+var circle = (radius) => {
   const proto = {
     type: "Circle",
     //some code
@@ -22,7 +22,7 @@ const circle = (radius) => {
   });
 };
 
-const square = (side) => {
+var square = (side) => {
   const proto = {
     type: "Square",
     //some code
@@ -115,3 +115,80 @@ var areaCalculator = (shapes) => {
 //If we wanted the sum method to be able to sum the areas of more shapes, we would have to add more if/else blocks and that goes against the OPEN-CLOSE principle
 
 //A way we can make this sum method better is to remove the logic to calculate the area of each shape out of the sum method and attach it to the shape's factory functions.
+
+var square = (side) => {
+  const proto = {
+    type: "Square",
+    //I've already have a specific implementation of the area method for square above, so this is just a repeatitive code
+    area: function () {
+      return side * side;
+    },
+  };
+  return Object.assign(Object.create(proto), { side });
+};
+
+//The same thing should be done for the circle factory function, an area method should be added. Now, to calculate the sum of any shape provided should be as simple as:
+var sumCalculatorOutput_0 = (obj) => {
+  const proto = {
+    sum: function () {
+      let result = 0;
+      for (const shape of obj.shapes) {
+        result += shape.area();
+      }
+      return result;
+    },
+  };
+};
+
+//Now we create another shape class and pass it in when calculating the sum without breaking our code. However, now another problem arises, how do we know that the object passed into the areaCalculator is actually a shape or if the shape has a method named area?
+
+//Function composition to the rescue!
+//First we create shapeInterface factory function, as we are talking about interfaces, out shapeInterface will be as abstracted as an interface, using function composition
+
+var shapeInterface = (state) => {
+  return { type: "shapeInterface", area: () => state.area(state) };
+};
+
+//Then we implement it to our square factory function
+
+var square = (side) => {
+  const proto = {
+    side,
+    type: "Square",
+    area: (args) => args.side * args.side,
+  };
+  const basics = shapeInterface(proto);
+  const composite = Object.assign({}, basics);
+  return Object.assign(Object.create(composite), { side });
+};
+
+const s = square(5);
+console.log("OBJ\n", s);
+console.log("PROTO\n", Object.getPrototypeOf(s));
+s.area();
+// OBJ
+//  {side: 5}
+// oopPrinciples.js:167 PROTO
+//  {type: 'shapeInterface', area: ƒ}
+
+//Note: The "Object.create()" method creates a new object, using an existing object as the prototype of the newly created object.
+//Ex: Object.create(proto, [propertiesObject])
+
+//Note: The "Object.assign()" is used to copy the values of all enumerable properties from one or more source objects to a target object. It returns the target object
+//Ex: Object.assign(target, ...sources)
+
+//In our areaCalculator sum method we can check if the shapes provided are actually types of shapeInterface, otherwise we throw an exception:
+
+// sum() {
+//   const area = []
+//   for (shape of this.shapes) {
+//     if (Object.getPrototypeOf(shape).type === 'shapeInterface') {
+//        area.push(shape.area())
+//      } else {
+//        throw new Error('this is not a shapeInterface object')
+//      }
+//    }
+//    return area.reduce((v, c) => c += v, 0)
+// }
+
+//And again, since JavaScript doesn't have support for interfaces like typed languages the example above demonstrates how we can simulate it, but more than simulating interfaces, what we are doing is using closures and function composition.
