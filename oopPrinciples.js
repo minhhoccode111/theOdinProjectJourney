@@ -192,3 +192,90 @@ s.area();
 // }
 
 //And again, since JavaScript doesn't have support for interfaces like typed languages the example above demonstrates how we can simulate it, but more than simulating interfaces, what we are doing is using closures and function composition.
+
+//LISKOV SUBSTITUTION PRINCIPLE
+//All this is stating is that every subclass/derived class should be substitutable for their base/parent class
+
+//In other words, as simple as that, a subclass should override the parent class methods in a way that does NOT BREAK FUNCTIONALITY FROM A CLIENT'S POINT OF VIEW
+
+//Still making use of out areaCalculator factory function, say we have a volumeCalculator factory function that extends the areaCalculator factory function, and in our case for extending an object without breaking changes in ES6 we do it by using Object.assign() and the Object.getPrototypeOf()
+
+var volumeCalculator = (s) => {
+  const proto = {
+    type: "volumeCalculator",
+  };
+  const areaCalProto = Object.getPrototypeOf(areaCalculator());
+  const inherit = Object.assign({}, areaCalProto, proto);
+  return Object.assign(Object.create(inherit), { shape: s });
+};
+
+//INTERFACE SEGREGATION PRINCIPLE
+//A client should never be forced to implement an interface that it doesn't use or clients shouldn't be forced to depend on methods they do not use
+
+//Imagine you have a toy that has different buttons. Each button has a specific function. You only use the buttons you need.
+//In code, this means clients (classes or objects) should not be forced to depend on interface they don't use
+//Ex:
+//Bad: A monolithic interface with unnecessary methods
+var Toy = class {
+  playMusic() {
+    //do something
+  }
+  changeColor() {
+    //do something
+  }
+  moveForward() {
+    //do something
+  }
+};
+
+//Good: smaller interface with specific methods
+
+var MusicPlayer = class {
+  playMusic() {
+    //do something
+  }
+};
+
+var ColorChanger = class {
+  changeColor() {
+    //do something
+  }
+};
+
+var Toy = class {
+  constructor(musicPlayer, colorChanger) {
+    this.musicPlayer = musicPlayer;
+    this.colorChanger = colorChanger;
+  }
+  moveForward() {
+    //do something
+  }
+};
+
+//DEPENDENCY INVERSION PRINCIPLE
+//Entities must depend on abstractions not on concretions. It states that the high level module must not depend on the low level module, but they should depend on abstractions
+
+//Imagine you have a toy that requires batteries to work. You can replace the batteries with different brands as long as they meet the toy's power requirements
+
+//In code, this means higher-level modules/classes should depend on abstractions (interface) rather than concrete implementations
+
+//Ex
+//Bad: Higher-level class directly depends on a low-level class
+var Battery = class {};
+
+var Toy = class {
+  constructor() {
+    this.battery = new Battery(); //bad
+  }
+};
+
+//Good: Higher-level class depends on an abstraction (interface)
+var Toy = class {
+  constructor(battery) {
+    this.battery = battery;
+  }
+};
+
+var Battery = class {
+  //something here
+};
