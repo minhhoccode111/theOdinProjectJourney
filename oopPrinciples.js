@@ -420,3 +420,85 @@
 //   }, "");
 //   p.textContent = text;
 // });
+
+//HOW TO WRITE HIGHLY SCALABLE AND MAINTAINABLE CODE IN JAVASCRIPT: COUPLING
+//Coupling is like how toys work together. Imagine you have a toy city with different buildings, such as a school, hospital, and library. The buildings need to work together, but it's important to keep them independent, so changes in one building don't affect others too much. That's what we want in our JavaScript code too
+//Here are some ways to achieve that:
+
+//1. Divide and conquer:
+//Just like how you organize your toys in different boxes, we can divide our code into smaller parts. Each part should do it own job, like a toy car only moving forward and a toy plane only flying.
+
+//Ex:
+//Bad: a single function doing everything
+var playWithToys = function () {
+  //moving forward
+  //flying
+  //making sounds
+  //...
+};
+
+//Good: separate functions for specific tasks
+var moveForward = function () {
+  //moving forward
+};
+
+var fly = function () {
+  //flying
+};
+
+var makeSound = function () {
+  //making sounds
+};
+
+//2. Keep things in their boxes: just like how toys have their own boxes, we can make sure our code is contained within modules or functions. Each module or function should have its own purpose and not depend too much on others
+//Ex:
+//Bad: Variables and functions scattered everywhere
+var carSpeed = 0;
+var planeSpeed = 0;
+
+var moveCarForward = function () {
+  //...
+};
+
+var flyPlane = function () {
+  //...
+};
+
+//Good: encapsulating code within modules
+var cars = {
+  speed: 0,
+  moveForward: function () {
+    //...
+  },
+};
+
+var plans = {
+  speed: 0,
+  fly: function () {
+    //...
+  },
+};
+
+//3. Play nicely with others: just like how toys can work together without being too dependent, we can make sure our code is not tightly connected. We want each part to be able to change without affecting others too much.
+//Ex:
+//Bad: Direct dependencies between objects
+var car = {
+  engine: engine,
+  moveForward: function () {
+    this.engine.start();
+    //...
+  },
+};
+
+//Good: Looser coupling with interfaces or contracts
+var car = {
+  engine: null,
+  setEngine: function (engine) {
+    this.engine = engine;
+  },
+  moveForward: function () {
+    this.engine.start();
+  },
+};
+
+//Remember, we want our JavaScript code to be like a well-organized toy city. Each building (module or function) should have its own purpose, be independent, and work well with others. This way, we can easily make changes, add new features, and keep out code scalable and maintainable for a long time
