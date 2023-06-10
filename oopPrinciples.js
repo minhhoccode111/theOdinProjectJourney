@@ -483,7 +483,7 @@ var plans = {
 //Ex:
 //Bad: Direct dependencies between objects
 var car = {
-  engine: engine,
+  // engine: engine,
   moveForward: function () {
     this.engine.start();
     //...
@@ -502,3 +502,231 @@ var car = {
 };
 
 //Remember, we want our JavaScript code to be like a well-organized toy city. Each building (module or function) should have its own purpose, be independent, and work well with others. This way, we can easily make changes, add new features, and keep out code scalable and maintainable for a long time
+
+//SUMMARY OF THE MOST COMMON OOP PRINCIPLES IN JAVASCRIPT
+
+//Object literal
+var book = {
+  title: "The Lord of the Rings",
+  author: "J.R.R. Tolkien",
+  year: 1954,
+};
+
+//Object constructor
+var BookConstructor = function (title, author, year) {
+  this.title = title;
+  this.author = author;
+  this.year = year;
+};
+
+var book_0 = new BookConstructor(
+  "The Lord of the Rings",
+  "J.R.R. Tolkien",
+  1954
+);
+var book_1 = new BookConstructor("What ever", "Unknown", 123123);
+// console.log(book_0, book_1);
+//BookConstructor {title: 'The Lord of the Rings', author: 'J.R.R. Tolkien', year: 1954} BookConstructor {title: 'What ever', author: 'Unknown', year: 123123}
+
+// console.log(book_0 instanceof BookConstructor); //true
+
+//Oject.create()
+var Book = {
+  summary: function () {
+    return `${this.title} was written by ${this.author} in ${this.year}`;
+  },
+};
+
+var book = Object.create(Book);
+book.title = "The Lord of the Rings";
+book.author = "J.R.R. Tolkien";
+book.year = 1954;
+
+// console.log(book.summary()); //The Lord of the Rings was written by J.R.R. Tolkien in 1954
+
+// console.log(Object.getPrototypeOf(book)); //{summary: ƒ}//refer to Book object
+
+//Class
+var Book = class {
+  constructor(name) {
+    this.name = name;
+  }
+};
+
+var book = new Book("Hoang Minh");
+// console.log(book); //Book {name: 'Hoang Minh'}
+
+//Encapsulation
+var Book = function (title, author) {
+  let t = title; //private
+  let a = author; //private
+  return {
+    summary: function () {
+      return `${t} was written by ${a}`;
+    },
+  };
+};
+
+var book = Book("Hoang Minh", "Nguyen Van A");
+// console.log(book.summary()); //Hoang Minh was written by Nguyen Van A
+
+//Abstraction
+var Book = function (title, author) {
+  //private variable, properties
+  let t = title;
+  let a = author;
+
+  //Public methods
+  this.getTitle = function () {
+    return this.title;
+  };
+
+  //Private methods
+  const summary = () => `${t} written by ${a}`;
+
+  //Public methods that has access to private methods
+  this.getSummary = function () {
+    return summary();
+  };
+};
+
+var book = new Book("Hoang Minh", "Nguyen Van A");
+
+// console.log(book.summary());//error
+// console.log(book.getSummary()); //Hoang Minh written by Nguyen Van A
+
+//Reusability/inheritance
+var Animal = class {};
+var Dog = class extends Animal {};
+
+//Prototypal Inheritance
+var Animal = function () {};
+var Dog = function () {};
+Dog.prototype = Object.create(Animal.prototype);
+
+//Polymorphism
+//The ability to call the same method on different objects and have each of them response in their own way is called polymorphism
+var Animal = function () {};
+
+//Animal can make a sound
+Animal.prototype.makeSound = function () {
+  return `Making noises`;
+};
+
+//Dog inherit Animal
+var Dog = function () {};
+Dog.prototype = Object.create(Animal.prototype);
+
+//Cat inherit Animal
+var Cat = function () {};
+Cat.prototype = Object.create(Animal.prototype);
+
+//Dog and Cat has its own makeSound method but each of them response in their own way
+Dog.prototype.makeSound = function () {
+  return `Barking`;
+};
+Cat.prototype.makeSound = function () {
+  return `Meowing`;
+};
+
+//And that's is polymorphism
+
+//Association
+//Association defines the multiplicity between objects: one-to-one,one-to-many,many-to-one,many-to-many
+var Vehicle = function () {};
+
+var car_0 = new Vehicle();
+var car_1 = new Vehicle();
+
+//make relationship between car_0 and car_1
+car_0.multiplicity = car_1;
+
+//Aggregation
+//Aggregation is a special case of an association. In the relationship between two objects, one object can have a more major role than the other. In other words, when an object takes more ownership that another one, that is aggregation. The owner object is often called the aggregate and the owned object is called the component. Aggregation is also called a "Has-a" relationship
+var Book = function (title, author) {
+  this.title = title;
+  this.author = author;
+};
+
+var book_0 = new Book("The Lord of the Rings", "J.R.R. Tolkien");
+var book_1 = new Book("What ever", "Unknown");
+
+//publication object is called the aggregate
+var publication = {
+  name: "New Publication Inc",
+  books: [],
+};
+
+//book_1 and book_0 objects is called component
+publication.books.push(book_0);
+publication.books.push(book_1);
+
+//Composition
+//Composition is a special case of aggregation. Composition is when an object contains another object and the contained object can't live without the container object
+
+var Book = {
+  title: "The Lord of the Rings",
+  author: "J.R.R. Tolkien",
+  publication: {
+    name: "New Publication Inc",
+    address: "chennai",
+  },
+};
+
+//Composition over inheritance
+var Eater = (state) => {
+  return {
+    eat: function () {
+      console.log(`${state.name} is eating`);
+    },
+  };
+};
+
+var Walker = (state) => {
+  return {
+    walk: function () {
+      console.log(`${state.name} is walking`);
+    },
+  };
+};
+
+var Jumper = (state) => {
+  return {
+    jump: function () {
+      console.log(`${state.name} is jumping`);
+    },
+  };
+};
+
+var Thrower = (state) => {
+  return {
+    throw: function () {
+      console.log(`${state.name} is throwing`);
+    },
+  };
+};
+
+var HumanCreator = (name) => {
+  let state = {
+    name,
+  };
+  let functionalities = Object.assign(
+    {},
+    Eater(state),
+    Walker(state),
+    Jumper(state),
+    Thrower(state)
+  );
+  return Object.assign(Object.create(functionalities), state);
+};
+
+const minh = HumanCreator("Hoang Minh");
+console.log(minh);
+//name: 'Hoang Minh'}
+//name: "Hoang Minh"
+//[[Prototype]]: Object
+//eat: ƒ ()
+//jump: ƒ ()
+//throw: ƒ ()
+//walk: ƒ ()
+//[[Prototype]]: Object
