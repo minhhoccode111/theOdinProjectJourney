@@ -1,0 +1,31 @@
+.hero__title {
+  text-align: center;
+}
+
+.container {
+  border: 10px solid #000;
+  background-color: lightpink;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 10rem;
+  width: 10rem;
+  border-radius: 2.8rem;
+  cursor: pointer;
+}
+.container.clicked .child {
+  transform: translate(100%, 10%) rotateZ(25deg);
+}
+.child {
+  border-radius: 2rem;
+  position: absolute;
+  height: 10rem;
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightblue;
+  transition: transform 600ms ease-in-out 100ms;
+  cursor: pointer;
+}
