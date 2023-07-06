@@ -49,7 +49,7 @@
   margin: 0 auto;
   border-bottom: 1rem solid #000;
   border-top: 1rem solid #000;
-  animation: rotating0 1000ms ease-in-out 0ms infinite;
+  /* animation: rotating0 1000ms ease-in-out 0ms infinite; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,7 +68,7 @@
   border-radius: 40rem;
   border-bottom: 1rem solid #000;
   border-top: 1rem solid #000;
-  animation: rotating1 500ms ease-in-out 0ms infinite reverse;
+  /* animation: rotating1 500ms ease-in-out 0ms infinite reverse; */
 }
 .animation__child:hover {
 }
@@ -103,4 +103,34 @@
 }
 body {
   height: 50vh;
+}
+
+.result {
+}
+.appear {
+  display: inline-block;
+  margin: 1rem;
+  background-color: lightgreen;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 1rem;
+  animation: fadeIn 500ms linear 0ms 1 normal forwards;
+  text-align: center;
+  transition: transform 100ms ease-in-out 100ms;
+  cursor: pointer;
+}
+.appear:hover {
+  transform: translate(4rem, 2rem) rotateZ(45deg) scale(1);
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotateZ(0) scale(0);
+  }
+  50% {
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0) scale(1);
+  }
 }
