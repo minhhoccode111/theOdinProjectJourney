@@ -1,0 +1,28 @@
+.container {
+  height: 200px;
+  width: 200px;
+  background-color: lightpink;
+  border: 10px solid #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container:hover .child {
+  transform: translate(210px, 210px) rotateZ(90deg);
+}
+.child {
+  height: 200px;
+  font-size: 2rem;
+  width: 200px;
+  background-color: lightblue;
+  transition: transform 200ms ease-in-out 0ms;
+  pointer-events: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(150, 110, 151);
+}
+.child:hover {
+}
