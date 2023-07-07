@@ -1,99 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Drop-down menu</title>
-    <style>
-      *,
-      ::before,
-      ::after {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
-      html {
-      }
-      body {
-        height: 200vh;
-        background-color: #464646;
-      }
-      ul,
-      li {
-        list-style-type: none;
-      }
-      a {
-        text-decoration: none;
-        color: #000;
-      }
-      .center {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .hidden {
-        display: none;
-      }
-      .header {
-        position: fixed;
-        z-index: 5;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: black;
-      }
-      .header_ul {
-        display: flex;
-        align-items: center;
-        height: 100%;
-      }
-      .nav_item {
-        background-color: black;
-      }
-      .nav_item:hover {
-        background-color: rgb(255, 78, 78);
-      }
-      .nav_item.location {
-        position: relative;
-      }
-      .nav_item.location ul {
-        display: block;
-        position: absolute;
-        bottom: 0;
-        z-index: -1;
-        background-color: #2b2b2b;
-        width: 100%;
-        transition: transform 350ms ease-in 0ms;
-        padding-top: 2rem;
-        box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.5);
-        transform: translate(0, -1rem);
-      }
-      .nav_item.location.clicked ul {
-        transform: translate(0, 11rem);
-      }
-      .nav_item.location:hover ul {
-        transform: translate(0, 11rem);
-      }
-      .nav_item_link {
-        text-transform: uppercase;
-        display: block;
-        padding: 2rem;
-        color: white;
-        font-size: 1.2rem;
-      }
-      .location_item {
-      }
-      .location_item:hover {
-        background-color: #6085ff;
-      }
-      .location_item a {
-        display: block;
-        padding: 0.8rem 1.2rem;
-        color: white;
-        text-transform: capitalize;
-      }
-    </style>
-  </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drop-down menu</title>
+  <style>
+    *,
+    ::before,
+    ::after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    html {
+    }
+    body {
+      height: 200vh;
+      background-color: #464646;
+    }
+    ul,
+    li {
+      list-style-type: none;
+    }
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hidden {
+      display: none;
+    }
+    .header {
+      position: fixed;
+      z-index: 5;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: black;
+    }
+    .header_ul {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    .nav_item {
+      background-color: black;
+    }
+    .nav_item:hover {
+      background-color: rgb(255, 78, 78);
+    }
+    .nav_item.location {
+      position: relative;
+    }
+    .nav_item.location ul {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      z-index: -1;
+      background-color: #2b2b2b;
+      width: 100%;
+      transition: transform 350ms ease-in 0ms;
+      padding-top: 2rem;
+      box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.5);
+      transform: translate(0, -1rem);
+    }
+    .nav_item.location.clicked {
+      background-color: rgb(255, 78, 78);
+    }
+    .nav_item.location.clicked ul {
+      transform: translate(0, 11rem);
+    }
+    .nav_item.location:hover ul {
+      transform: translate(0, 11rem);
+    }
+    .nav_item_link {
+      text-transform: uppercase;
+      display: block;
+      padding: 2rem;
+      color: white;
+      font-size: 1.2rem;
+    }
+    .location_item {
+    }
+    .location_item:hover {
+      background-color: #6085ff;
+    }
+    .location_item a {
+      display: block;
+      padding: 0.8rem 1.2rem;
+      color: white;
+      text-transform: capitalize;
+    }
+  </style>
   <body>
     <header class="header">
       <ul class="header_ul">
@@ -132,8 +133,6 @@
       el.addEventListener('click', (e) => {
         el.classList.toggle('clicked');
       });
-
-      // location.addEventListener
     </script>
   </body>
 </html>
