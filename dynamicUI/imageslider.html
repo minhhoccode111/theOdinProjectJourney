@@ -4,10 +4,252 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image slider</title>
-    <style></style>
+    <style>
+      *,
+      ::before,
+      ::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 10px;
+        background-color: #aaa;
+      }
+      body {
+        font-size: 2rem;
+      }
+      .hidden {
+        display: none;
+      }
+      ul,
+      li {
+        list-style-type: none;
+      }
+      a {
+        text-decoration: none;
+        color: unset;
+      }
+      .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .site__wrapper {
+        max-width: 100rem;
+        height: 100vh;
+        margin: 0 auto;
+        gap: 4rem;
+      }
+      .img__slider__ctn {
+        position: relative;
+      }
+      .btn {
+        position: absolute;
+        top: 0;
+        /* bottom: 0; */
+        height: 100%;
+        width: 5rem;
+        background-color: #000000b7;
+        color: white;
+        cursor: pointer;
+      }
+      .btn__previous {
+        left: -5rem;
+      }
+      .btn__next {
+        right: -5rem;
+      }
+      .img__slider {
+      }
+      .img {
+        width: 30rem;
+        height: 45rem;
+      }
+      .img img {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
-    <div class="site__wrapper"></div>
-    <script></script>
+    <div class="site__wrapper center">
+      <div class="img__slider__ctn">
+        <button class="btn btn__previous" type="button"><</button>
+        <button type="button" class="btn btn__next">></button>
+        <div class="img__slider">
+          <div class="img">
+            <img src="./img/20phutlamchuthoigian.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/conantap37.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/5centimettrengiay.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/conduongdidenthanhcongbangsutute.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/7nambongtoi.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/conduongtrothanhfreelancewriter.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/aichelungchoban.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/connghidimekhongbiet.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/amthanhcuaimlang.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/connhonhaukhong.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/chacgitadayeunhau.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/dieucuoicungolai.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/chamedochai.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/dieukidieucuatiemtaphoanamiya.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/chamsocsuckhoekhongdungthuoc.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/ditimlesong.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/chicanmaukhangiay.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/ditimmanhghepgiadinh.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/chiemtinhhocnhapmon.jpg" />
+          </div>
+
+          <div class="img">
+            <img src="./img/divergent.jpg" />
+          </div>
+        </div>
+      </div>
+      <div class="inputs__ctn">
+        <form class="form" action="#">
+          <label for="radio__index__00" class="form__label"><input type="radio" name="imageIndex" id="radio__index__00" title="Image number 0" value="00" /></label
+          ><label for="radio__index__01" class="form__label"><input type="radio" name="imageIndex" id="radio__index__01" title="Image number 01" value="01" /></label
+          ><label for="radio__index__02" class="form__label"><input type="radio" name="imageIndex" id="radio__index__02" title="Image number 02" value="02" checked /></label
+          ><label for="radio__index__03" class="form__label"><input type="radio" name="imageIndex" id="radio__index__03" title="Image number 03" value="03" /></label
+          ><label for="radio__index__04" class="form__label"><input type="radio" name="imageIndex" id="radio__index__04" title="Image number 04" value="04" /></label
+          ><label for="radio__index__05" class="form__label"><input type="radio" name="imageIndex" id="radio__index__05" title="Image number 05" value="05" /></label
+          ><label for="radio__index__06" class="form__label"><input type="radio" name="imageIndex" id="radio__index__06" title="Image number 06" value="06" /></label
+          ><label for="radio__index__07" class="form__label"><input type="radio" name="imageIndex" id="radio__index__07" title="Image number 07" value="07" /></label
+          ><label for="radio__index__08" class="form__label"><input type="radio" name="imageIndex" id="radio__index__08" title="Image number 08" value="08" /></label
+          ><label for="radio__index__09" class="form__label"><input type="radio" name="imageIndex" id="radio__index__09" title="Image number 09" value="09" /></label
+          ><label for="radio__index__10" class="form__label"><input type="radio" name="imageIndex" id="radio__index__10" title="Image number 10" value="10" /></label
+          ><label for="radio__index__11" class="form__label"><input type="radio" name="imageIndex" id="radio__index__11" title="Image number 11" value="11" /></label
+          ><label for="radio__index__12" class="form__label"><input type="radio" name="imageIndex" id="radio__index__12" title="Image number 12" value="12" /></label
+          ><label for="radio__index__13" class="form__label"><input type="radio" name="imageIndex" id="radio__index__13" title="Image number 13" value="13" /></label
+          ><label for="radio__index__14" class="form__label"><input type="radio" name="imageIndex" id="radio__index__14" title="Image number 14" value="14" /></label
+          ><label for="radio__index__15" class="form__label"><input type="radio" name="imageIndex" id="radio__index__15" title="Image number 15" value="15" /></label
+          ><label for="radio__index__16" class="form__label"><input type="radio" name="imageIndex" id="radio__index__16" title="Image number 16" value="16" /></label
+          ><label for="radio__index__17" class="form__label"><input type="radio" name="imageIndex" id="radio__index__17" title="Image number 17" value="17" /></label
+          ><label for="radio__index__18" class="form__label"><input type="radio" name="imageIndex" id="radio__index__18" title="Image number 18" value="18" /></label
+          ><label for="radio__index__19" class="form__label"><input type="radio" name="imageIndex" id="radio__index__19" title="Image number 19" value="19" /></label>
+        </form>
+      </div>
+    </div>
+    <script>
+      const slider = (() => {
+        const slider = document.querySelector('.img__slider');
+        const imgs = [...document.querySelectorAll('.img')];
+        let index = 0;
+
+        const radios = [...document.querySelectorAll('[name="imageIndex"]')];
+
+        imgs.forEach((e) => {
+          e.style.display = 'none';
+        });
+        const hide = () => {
+          imgs[index].style.display = 'none';
+        };
+
+        const show = (i) => {
+          // if (+i === index) return;
+          hide();
+          imgs[i].style.display = 'block';
+          index = i;
+          radios[i].checked = true;
+        };
+
+        const next = () => {
+          if (index > imgs.length - 2) {
+            hide();
+            index = 0;
+            show(index);
+            return;
+          }
+          show(index + 1);
+        };
+
+        const previous = () => {
+          if (index === 0) {
+            hide();
+            index = imgs.length - 1;
+            show(index);
+            return;
+          }
+          show(index - 1);
+        };
+
+        radios.forEach((element, index) => {
+          element.addEventListener('click', (e) => {
+            show(index);
+            this.checked = true;
+          });
+        });
+
+        return { next, previous, show };
+      })();
+
+      const next = document.querySelector('.btn__next');
+      const previous = document.querySelector('.btn__previous');
+
+      next.addEventListener('click', slider.next);
+      previous.addEventListener('click', slider.previous);
+
+      slider.show(0);
+      setInterval(slider.next, 4000);
+
+      window.addEventListener('DOMContentLoaded', (e) => {
+        form.reset();
+      });
+    </script>
   </body>
 </html>
