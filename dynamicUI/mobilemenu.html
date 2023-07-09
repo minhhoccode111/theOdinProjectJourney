@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile menu</title>
+    <style>
+      *,
+      ::before,
+      ::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 10px;
+      }
+      body {
+        font-size: 2rem;
+      }
+      .hidden {
+        display: none;
+      }
+      ul,
+      li {
+        list-style-type: none;
+      }
+      a {
+        text-decoration: none;
+        color: unset;
+      }
+      .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .site__wrapper {
+        max-width: 100rem;
+      }
+      header {
+        background-color: brown;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.6rem 3.2rem;
+        width: 100%;
+        max-width: 100rem;
+        border-radius: 0 0 2rem 2rem;
 
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      header * {
+        color: white;
+      }
+      header > h1 {
+        white-space: nowrap;
+        text-transform: uppercase;
+      }
+      header > nav {
+      }
+      header > button {
+        background-color: brown;
+        font-size: 3.2rem;
+        border: 0 solid #000;
+        cursor: pointer;
+        vertical-align: middle;
+        position: absolute;
+        right: 3rem;
+        top: 45%;
+        transform: translate(0%, -50%);
+        transition: transform 350ms ease 0ms;
+      }
+      header > button:hover {
+        transform: translate(0%, -45%) scale(1.75) rotate(90deg);
+      }
+      header > nav > ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      header > nav > button {
+      }
+      header > nav > ul > li {
+        transition-property: margin, transform;
+        transition-duration: 0.35s, 0.35s;
+        transition-timing-function: ease, ease;
+        transition-delay: 0s, 0s;
+      }
+      header > nav > ul > li:hover {
+        text-decoration: underline;
+        transform: translate(0, 0.4rem) scale(1.35);
+        margin: 0 2rem;
+      }
+      header > nav > ul > li > a {
+        cursor: pointer;
+        text-transform: capitalize;
+      }
+
+      @media screen and (max-width: 768px) {
+        .header__nav {
+          display: none;
+        }
+        .header__menu {
+          display: block;
+        }
+      }
+      @media screen and (min-width: 769px) {
+        .header__nav {
+          display: block;
+        }
+        .header__menu {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site__wrapper">
+      <header id="header" class="header">
+        <h1 class="header__title">mobile</h1>
+
+        <button type="button" title="Menu" class="header__menu">=</button>
+
+        <nav class="header__nav">
+          <button type="button" title="Close menu" class="nav__close hidden">x</button>
+          <ul class="nav__list">
+            <li class="list__item"><a href="#" class="item__link">home</a></li>
+
+            <li class="list__item"><a href="#" class="item__link">service</a></li>
+
+            <li class="list__item"><a href="#" class="item__link">about</a></li>
+
+            <li class="list__item"><a href="#" class="item__link">blog</a></li>
+
+            <li class="list__item"><a href="#" class="item__link">contact</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+    <script>
+      console.log('Hello, World!');
+    </script>
+  </body>
+</html>
