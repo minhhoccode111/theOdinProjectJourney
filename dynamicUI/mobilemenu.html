@@ -61,6 +61,37 @@
       }
       header > nav {
       }
+      header > nav.opened {
+        background-color: rgba(0, 0, 0, 0.814);
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0vh;
+        width: 100%;
+        max-width: 50rem;
+        height: 100vh;
+        transform: translate(50rem, 0);
+        transition: transform 500ms ease-in-out 0ms;
+      }
+      header > nav.animated {
+        transform: translate(0, 0);
+      }
+      header > nav.opened > button {
+        font-size: 4rem;
+        height: 8rem;
+        width: 8rem;
+        background-color: transparent;
+        border: 0 solid #000;
+        cursor: pointer;
+        float: right;
+      }
+      header > nav.opened > ul {
+        flex-direction: column;
+        align-items: start;
+        gap: 2rem;
+        padding: 2rem;
+      }
+
       header > button {
         background-color: brown;
         font-size: 3.2rem;
@@ -104,6 +135,9 @@
         .header__nav {
           display: none;
         }
+        .nav__close {
+          display: block;
+        }
         .header__menu {
           display: block;
         }
@@ -111,6 +145,9 @@
       @media screen and (min-width: 769px) {
         .header__nav {
           display: block;
+        }
+        .nav__close {
+          display: none;
         }
         .header__menu {
           display: none;
@@ -126,7 +163,7 @@
         <button type="button" title="Menu" class="header__menu">=</button>
 
         <nav class="header__nav">
-          <button type="button" title="Close menu" class="nav__close hidden">x</button>
+          <button type="button" title="Close menu" class="nav__close">x</button>
           <ul class="nav__list">
             <li class="list__item"><a href="#" class="item__link">home</a></li>
 
@@ -144,6 +181,33 @@
 
     <script>
       console.log('Hello, World!');
+      const menu = document.querySelector('.header__menu');
+      const nav = document.querySelector('.header__nav');
+      const close = document.querySelector('.nav__close');
+
+      const closed = () => {
+        nav.classList.remove('animated');
+        setTimeout(() => {
+          nav.classList.remove('opened');
+        }, 500);
+      };
+
+      menu.addEventListener('click', (e) => {
+        nav.classList.add('opened');
+        setTimeout(() => {
+          nav.classList.add('animated');
+        }, 10);
+      });
+
+      close.addEventListener('click', (e) => {
+        closed();
+      });
+
+      window.addEventListener('resize', (e) => {
+        if (window.innerWidth > 768) {
+          closed();
+        }
+      });
     </script>
   </body>
 </html>
