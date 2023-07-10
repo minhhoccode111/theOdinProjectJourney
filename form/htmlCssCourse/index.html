@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form validations</title>
+    <style>
+      body {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+      }
+      input:valid {
+        border: 1px solid #47ff5f;
+      }
+      input:invalid {
+        border: 1px solid #ff4747;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Form validations</h1>
+    <div>
+      <h2>Required Validation</h2>
+      <form action="#">
+        <div>
+          <label for="user_email">*Email: <input type="email" id="user_email" required /></label>
+        </div>
+        <div>
+          <label for="user_password">*Password: <input type="password" id="user_password" required /></label>
+        </div>
+        <div><button title="Login" type="submit">Login</button></div>
+      </form>
+    </div>
+    <div>
+      <h2>Text Length Validations</h2>
+      <h2>Min length = 10</h2>
+      <h2>Max length = 10</h2>
+      <form action="#">
+        <div>
+          <label for="tweet_caption">*Caption: <input type="text" id="tweet_caption" required minlength="10" maxlength="10" /></label>
+        </div>
+        <div>
+          <label for="tweet_detail">*Detail: <input type="text" id="tweet_detail" minlength="10" maxlength="10" required /></label>
+        </div>
+        <div><button title="Login" type="submit">Tweet</button></div>
+      </form>
+    </div>
+    <div>
+      <h2>Number Range Validations</h2>
+      <h2>Min value = 20, 2023</h2>
+      <h2>Max value = 20, 2023</h2>
+      <form action="#">
+        <div>
+          <label for="age">*Age: <input type="number" id="age" required min="20" max="20" /></label>
+        </div>
+        <div>
+          <label for="year">*Year: <input type="number" id="year" min="2023" max="2023" required /></label>
+        </div>
+        <div><button title="Login" type="submit">Create</button></div>
+      </form>
+    </div>
+    <div>
+      <h2>Pattern Validations</h2>
+      <form action="#">
+        <div>
+          <label for="phone_number"
+            >*Phone number:
+            <input type="text" id="phone_number" required placeholder="+84 987654321" title="Please enter a valid phone number, example: +84 987654321" pattern="^(((\+84\s?)|(0))\d{9}$)" />
+          </label>
+        </div>
+        <button type="submit" title="Submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
